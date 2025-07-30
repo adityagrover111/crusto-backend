@@ -1,11 +1,12 @@
 const express = require("express");
 require("dotenv").config();
 const mongoose = require("mongoose");
+const cors = require("cors");
+const app = express();
 
 const menuRoute = require("./routes/menu.route");
 const orderRoutes = require("./routes/order.routes");
-const cors = require("cors");
-const app = express();
+const PORT = process.env.PORT || 3000;
 
 app.get("/", (req, res) => {
   res.send("hello world");
@@ -23,8 +24,8 @@ mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
     console.log("Connected to MongoDB");
-    app.listen(3000, () => {
-      console.log("Server running on port 3000");
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
     });
   })
   .catch((err) => {
