@@ -16,7 +16,7 @@ app.get("/", (req, res) => {
 app.use(express.json());
 app.use(
   cors({
-    origin: "https://crusto.vercel.app" && "http://localhost:5173/",
+    origin: ["https://crusto.vercel.app", "http://localhost:5173"],
   })
 );
 
