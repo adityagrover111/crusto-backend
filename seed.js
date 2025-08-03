@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 const Pizza = require("./models/menu.model");
-
+dotenv.config();
 const pizzas = [
   {
     id: 1,
@@ -189,7 +190,7 @@ const pizzas = [
   },
   {
     id: 18,
-    name: "Tofu and Mushroom",
+    name: "Tofu Delight",
     unitPrice: 15,
     imageUrl:
       "https://dclaevazetcjjkrzczpc.supabase.co/storage/v1/object/public/pizzas/pizza-18.jpg",
@@ -205,9 +206,7 @@ const pizzas = [
 ];
 
 mongoose
-  .connect(
-    "mongodb+srv://<your-user>:<your-password>@cluster0.mongodb.net/Node-API?retryWrites=true&w=majority"
-  )
+  .connect(process.env.MONGO_URL)
   .then(async () => {
     console.log("Connected to DB, seeding pizzas...");
     await Pizza.deleteMany(); // Remove old entries
